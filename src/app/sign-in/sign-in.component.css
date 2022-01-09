@@ -1,0 +1,65 @@
+.body{
+    width: 100vw;
+    height: 100vh;
+    display:grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+    position: fixed;
+    background-color: yellow;
+}
+
+.title{
+    grid-column: 3;
+    text-align: center;
+    grid-row: 2;
+}
+#userFirstName, #userLastName{
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.form{
+    grid-column: 3;
+    grid-row: 3;
+    background-color: black;
+    margin: -20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.section-email{
+    margin: 10px 0px 10px 0px;
+}
+
+.section-password{
+    margin: 10px 0px 10px 0px;
+}
+
+.password{
+    margin: 20px 0px 10px 0px;
+}
+
+.confirmPassword{
+    margin: 20px 0px 10px 0px; 
+}
+
+.submit{
+    display: block;
+    margin-left: 45%;
+    margin-right: auto;
+}
+
+form{
+    gap: 10px;
+}
+
+label{
+    color: white;
+}
+
+@media screen and (max-width: 1050px){
+    .body{
+        min-width: 1050px;
+    }
+
+}

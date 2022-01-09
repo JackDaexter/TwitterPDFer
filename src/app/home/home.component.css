@@ -1,0 +1,21 @@
+.menu{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-rows: 30% 50% 20%;
+    gap: 10px;
+    position: fixed;
+}
+
+.button-menu{
+    grid-column: 3;
+    grid-row: 2;
+}
+
+
+button{
+   display: block;
+   width: 100%;
+   margin-bottom: 10px;
+}
