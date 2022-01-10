@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { NavigationService } from '../services/navigation.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 export class SignInComponent implements OnInit {
 
   hasBeenSubmit : boolean = false;
-
+  diffPassword : boolean = false;
+  
   form = this.formBuilder.group({
     "firstName":["",Validators.required],
     "lastName":["", Validators.required],
@@ -18,7 +20,7 @@ export class SignInComponent implements OnInit {
     "confirmPassword": ["", Validators.required]
   })
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private navigationService : NavigationService) { }
 
 
   ngOnInit(): void {
@@ -26,21 +28,24 @@ export class SignInComponent implements OnInit {
 
   onSubmit(form: FormGroup){
     this.hasBeenSubmit = true;
-    // const email = form.value.email;
-    // const firstname = form.value.firstname;
-    // const lastname = form.value.lastname;
-    // const password = form.value.password;
-    // const passwordConfirmation = form.value.passwordConfirm;
-    console.log(form.get("firstName")?.status);
-    console.log(this);
+    const email : string  = form.value.email;
+    const firstname : string = form.value.firstname;
+    const lastname : string = form.value.lastname;
+    const password : string = form.value.password;
+    const passwordConfirmation : string = form.value.passwordConfirm;
 
-    setInterval(()=>{
-      this.hasBeenSubmit =false;
-    }, 1000);
+    if(password === passwordConfirmation){
+      
+    }
+    else{
+
+    }
     
   }
 
- 
+  back():void{
+    this.navigationService.back();
+  }
 
 
   public checkEmailForm(email: any) : boolean{

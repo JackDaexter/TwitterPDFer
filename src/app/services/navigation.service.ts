@@ -22,8 +22,10 @@ export class NavigationService {
       this.location.back();
     }
     else{
+      console.log("Back history size : " + this.history.length);
       this.router.navigateByUrl("/");
     }
   }
+
 
 }

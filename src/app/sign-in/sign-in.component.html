@@ -49,7 +49,6 @@
                         <label for="password"> Password : </label>
                         <input id="password" type="password" placeholder="Enter your password" class="form-control" formControlName="password"> 
                     </div>
-
                     <div *ngIf="form.controls['password'].dirty">
                         <div [style.color]="
                             form.get('password')?.value.length >= 5 ? 'green' : 'red'
@@ -62,21 +61,23 @@
                     <div class="form-group">
                         <label for="confirmPassword"> Password Confirmation : </label>
                         <input id="confirmPassword" type="password" placeholder="Enter your password" class="form-control" formControlName="confirmPassword"> 
-                    </div>
-                </div>
-                <div *ngIf="hasBeenSubmit">
-                    <div *ngIf="form.controls['confirmPassword'].dirty">
-
+                        <div *ngIf="hasBeenSubmit">
+                            <div [style.color]="'red'">
+                                Passwords are differents
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="submit">
-                <button class="btn btn-primary" type="submit" > Sign In</button>
+                <button class="btn btn-primary" 
+                        type="submit" 
+                        [disabled]="!this.form.valid"> Sign In</button>
             </div>
         </form>
     </div>
     <div class="previous">
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" (click)="back()">
             < previous
         </button>
     </div>

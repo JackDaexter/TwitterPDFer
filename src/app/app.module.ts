@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
 import { HomeComponent } from './home/home.component';
 import { SignInModule } from './sign-in/sign-in.module';
+import { NavigationService } from './services/navigation.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { SignInModule } from './sign-in/sign-in.module';
     AppRoutingModule,
     SignInModule,
   ],
-  providers: [],
+  providers: [NavigationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
