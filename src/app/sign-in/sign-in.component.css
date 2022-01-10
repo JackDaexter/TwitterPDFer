@@ -1,31 +1,58 @@
+
+/* Structure of the page */
 .body{
     width: 100vw;
     height: 100vh;
     display:grid;
-    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 5% 30% 1fr 1fr;
     position: fixed;
     background-color: yellow;
 }
 
-.title{
+
+
+form{
+    gap: 10px;
+}
+
+label{
+    color: white;
+}
+
+
+/* Form design and configuration */
+
+.form{
+    grid-column: 3;
+    grid-row: 4;
+    margin : auto;
+}
+
+form{
+    background-color: black;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+h1.title{
     grid-column: 3;
     text-align: center;
-    grid-row: 2;
+    grid-row: 3;
+    margin: auto;
+    font-size: 2.9em;
 }
+
+
+
+
 #userFirstName, #userLastName{
     width: 50%;
     margin-bottom: 10px;
 }
 
-.form{
-    grid-column: 3;
-    grid-row: 3;
-    background-color: black;
-    margin: -20px;
-    padding: 10px;
-    border-radius: 10px;
-}
+
+/* Form elements */
 
 .section-email{
     margin: 10px 0px 10px 0px;
@@ -49,13 +76,13 @@
     margin-right: auto;
 }
 
-form{
-    gap: 10px;
+.previous{
+    grid-row-end: -1;
+    margin: auto;
+    margin-bottom: 35%;
+    margin-left: 0%;
 }
-
-label{
-    color: white;
-}
+/* ________________________  */
 
 @media screen and (max-width: 1050px){
     .body{

@@ -1,9 +1,8 @@
 <div class="body">
-    <div class="title">
-        <h1>Inscription</h1>
-    </div>
+    
+    <h1 class="title">Inscription</h1>
+    
     <div class="form">
-        
         <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
             <div class="row">
                 <div class="form-group col-md-6" id="userFirstName">
@@ -35,12 +34,12 @@
                 <div class="section-email">
                     <label for="email">Email:</label>
                     <input id="email"  type="email" class="form-control" placeholder="Your Email" formControlName="email">  
-                </div>
-                <div *ngIf="this.form.controls['email'].dirty">
-                    <div *ngIf="!checkEmailForm(this.form.controls['email'].value)">
-                        <p [ngStyle]="{'color':'red'}">
-                        Format d'email invalide
-                        </p>
+                    <div *ngIf="this.form.controls['email'].dirty">
+                        <div *ngIf="!checkEmailForm(this.form.controls['email'].value)">
+                            <p [ngStyle]="{'color':'red'}">
+                            Format d'email invalide
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,7 +51,11 @@
                     </div>
 
                     <div *ngIf="form.controls['password'].dirty">
-                        <div *ng></div>
+                        <div [style.color]="
+                            form.get('password')?.value.length >= 5 ? 'green' : 'red'
+                            ">
+                             * Minimum 5 letters
+                        </div>
                     </div>
                 </div>
                 <div class="confirmPassword">
@@ -71,5 +74,10 @@
                 <button class="btn btn-primary" type="submit" > Sign In</button>
             </div>
         </form>
+    </div>
+    <div class="previous">
+        <button class="btn btn-primary">
+            < previous
+        </button>
     </div>
 </div>

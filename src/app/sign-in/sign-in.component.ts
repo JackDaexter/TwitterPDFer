@@ -40,9 +40,12 @@ export class SignInComponent implements OnInit {
     
   }
 
+ 
+
+
   public checkEmailForm(email: any) : boolean{
     let regex = new RegExp('[a-zA-Z0-9]+@[a-zA-Z]+[\\.][a-z]{2,}');
-  
+    
     return regex.test(email.toString());
   }
 }
