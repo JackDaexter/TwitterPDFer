@@ -62,8 +62,10 @@
                         <label for="confirmPassword"> Password Confirmation : </label>
                         <input id="confirmPassword" type="password" placeholder="Enter your password" class="form-control" formControlName="confirmPassword"> 
                         <div *ngIf="hasBeenSubmit">
-                            <div [style.color]="'red'">
-                                Passwords are differents
+                            <div *ngIf="diffPassword">
+                                <div [style.color]="'red'">
+                                    Passwords are differents
+                                </div>
                             </div>
                         </div>
                     </div>

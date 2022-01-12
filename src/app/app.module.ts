@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AccountComponent } from './account/account.component';
 import { HomeComponent } from './home/home.component';
 import { SignInModule } from './sign-in/sign-in.module';
 import { NavigationService } from './services/navigation.service';
+import { LoadThreadModule } from './load-thread/load-thread.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { NavigationService } from './services/navigation.service';
     BrowserModule,
     AppRoutingModule,
     SignInModule,
+    LoadThreadModule
   ],
   providers: [NavigationService],
   bootstrap: [AppComponent]
