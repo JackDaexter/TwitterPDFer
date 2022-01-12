@@ -12,3 +12,4 @@ const routes: Routes = [
 })
 
 export class LoadThreadRoutingModule { }
+
