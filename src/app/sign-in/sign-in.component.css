@@ -1,13 +1,16 @@
 
 /* Structure of the page */
 .body{
-    width: 100vw;
     height: 100vh;
-    display:grid;
+    width: 100vw;
+    max-width:100%;
+    /* display:grid;
     grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 5% 30% 1fr 1fr;
-    position: fixed;
+    grid-template-rows: 1fr 1fr 5% 30% 1fr 1fr; */
     background-color: yellow;
+    overflow-x: hidden;
+    padding : 0;
+    margin: 0;
 }
 
 
@@ -21,7 +24,7 @@ label{
 }
 
 
-/* Form design and configuration */
+/* Form design and configuration  */
 
 .form{
     grid-column: 3;
@@ -33,6 +36,7 @@ form{
     background-color: black;
     padding: 10px;
     border-radius: 10px;
+
 }
 
 h1.title{
@@ -40,35 +44,10 @@ h1.title{
     text-align: center;
     grid-row: 3;
     margin: auto;
-    font-size: 2.9em;
+    font-size: 2.9vh;
 }
 
-
-
-
-#userFirstName, #userLastName{
-    width: 50%;
-    margin-bottom: 10px;
-}
-
-
-/* Form elements */
-
-.section-email{
-    margin: 10px 0px 10px 0px;
-}
-
-.section-password{
-    margin: 10px 0px 10px 0px;
-}
-
-.password{
-    margin: 20px 0px 10px 0px;
-}
-
-.confirmPassword{
-    margin: 20px 0px 10px 0px; 
-}
+/* Form elements  */
 
 .submit{
     display: block;
@@ -79,14 +58,26 @@ h1.title{
 .previous{
     grid-row-end: -1;
     margin: auto;
-    margin-bottom: 35%;
+    margin-bottom: 0%;
     margin-left: 0%;
 }
-/* ________________________  */
+
 
 @media screen and (max-width: 1050px){
-    .body{
-        min-width: 1050px;
-    }
+  
+    /* div .body{
+        height: 100vh;
+        width: 100vw;
+        max-width:100%;
+        grid-template-columns: 1fr 1fr 1fr 1fr;    }
+    
+    form{
+        padding: 10px;
+        border-radius: 10px;
+        size: 10px;
+        background-color: red;
+
+    } */
 
 }
+

@@ -5,8 +5,9 @@ import { LoadThreadComponent } from './load-thread/load-thread.component';
 
 const routes: Routes = [
   { path: 'home', component:HomeComponent},
+  { path: 'login', loadChildren: () => import('./login/login.module').then(x => x.LoginModule)},
   { path: 'sign-in', loadChildren: () => import('./sign-in/sign-in.module').then(m => m.SignInModule) },
-  { path: 'loadthread', loadChildren: () => import('./load-thread/load-thread.module').then(x => x.LoadThreadModule) },
+  // { path: 'loadthread', loadChildren: () => import('./load-thread/load-thread.module').then(x => x.LoadThreadModule) },
   { path: '', redirectTo:'/home', pathMatch:'full'}
 
 ];

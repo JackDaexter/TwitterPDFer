@@ -1,86 +1,88 @@
 <div class="body">
+    <div class="container-xl">
+        <h1 class="title">Inscription</h1>
     
-    <h1 class="title">Inscription</h1>
-    
-    <div class="form">
-        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
-            <div class="row">
-                <div class="form-group col-md-6" id="userFirstName">
-                    <label for="firstName">Firstname:</label>
-                    <input id="firstName" type="text" class="form-control" placeholder="Your name" formControlName="firstName">
-                    <div *ngIf="hasBeenSubmit">
-                        <div *ngIf="form.get('firstName')?.status === 'INVALID'">
-                            <div [ngStyle]="{
-                                'color' : 'red'}">
-                                Firstname Invalid
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group" id="userLastName">
-                    <label for="lastName">Surname:</label>
-                    <input id="lastName" type="text" class="form-control" placeholder="Your surname" formControlName="lastName">
-                    <div *ngIf="hasBeenSubmit">
-                        <div *ngIf="form.get('lastName')?.status === 'INVALID'">
-                            <div [ngStyle]="{'color' : 'red'}">
-                                Lastname Invalid
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           
-            <div class="form-group">
-                <div class="section-email">
-                    <label for="email">Email:</label>
-                    <input id="email"  type="email" class="form-control" placeholder="Your Email" formControlName="email">  
-                    <div *ngIf="this.form.controls['email'].dirty">
-                        <div *ngIf="!checkEmailForm(this.form.controls['email'].value)">
-                            <p [ngStyle]="{'color':'red'}">
-                            Format d'email invalide
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-password">
-                <div class="password">
-                    <div class="form-group">
-                        <label for="password"> Password : </label>
-                        <input id="password" type="password" placeholder="Enter your password" class="form-control" formControlName="password"> 
-                    </div>
-                    <div *ngIf="form.controls['password'].dirty">
-                        <div [style.color]="
-                            form.get('password')?.value.length >= 5 ? 'green' : 'red'
-                            ">
-                             * Minimum 5 letters
-                        </div>
-                    </div>
-                </div>
-                <div class="confirmPassword">
-                    <div class="form-group">
-                        <label for="confirmPassword"> Password Confirmation : </label>
-                        <input id="confirmPassword" type="password" placeholder="Enter your password" class="form-control" formControlName="confirmPassword"> 
+        <div class="form">
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="firstName" class="col-form-label">Firstname:</label>
+                        <input id="firstName" type="text" class="form-control form-control-sm" placeholder="Your name" formControlName="firstName">
                         <div *ngIf="hasBeenSubmit">
-                            <div *ngIf="diffPassword">
-                                <div [style.color]="'red'">
-                                    Passwords are differents
+                            <div *ngIf="form.get('firstName')?.status === 'INVALID'">
+                                <div [ngStyle]="{
+                                    'color' : 'red'}">
+                                    Firstname Invalid
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="lastName" class="col-sm-1 col-form-label">Surname:</label>
+                        <input id="lastName" type="text" class="form-control form-control-sm" placeholder="Your surname" formControlName="lastName">
+                        <ng-container *ngIf="hasBeenSubmit">
+                            <div *ngIf="form.get('lastName')?.status === 'INVALID'">
+                                <div [ngStyle]="{'color' : 'red'}">
+                                    Lastname Invalid
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <div class="section-email">
+                        <label for="email" class="col-sm-1 col-form-label">Email:</label>
+                        <input id="email"  type="email" class="form-control" placeholder="Your Email" formControlName="email">  
+                        <div *ngIf="this.form.controls['email'].dirty">
+                            <div *ngIf="!checkEmailForm(this.form.controls['email'].value)">
+                                <p [ngStyle]="{'color':'red'}">
+                                Format d'email invalide
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-password">
+                    <div class="password">
+                        <div class="form-group">
+                            <label for="password"> Password : </label>
+                            <input id="password" type="password" placeholder="Enter your password" class="form-control" formControlName="password"> 
+                        </div>
+                        <div *ngIf="form.controls['password'].dirty">
+                            <div [style.color]="
+                                form.get('password')?.value.length >= 5 ? 'green' : 'red'
+                                ">
+                                 * Minimum 5 letters
+                            </div>
+                        </div>
+                    </div>
+                    <div class="confirmPassword">
+                        <div class="form-group">
+                            <label for="confirmPassword"> Password Confirmation : </label>
+                            <input id="confirmPassword" type="password" placeholder="Enter your password" class="form-control" formControlName="confirmPassword"> 
+                            <div *ngIf="hasBeenSubmit">
+                                <div *ngIf="diffPassword">
+                                    <div [style.color]="'red'">
+                                        Passwords are differents
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="submit">
-                <button class="btn btn-primary" 
-                        type="submit" 
-                        [disabled]="!this.form.valid"> Sign In</button>
-            </div>
-        </form>
+                <div class="submit">
+                    <button class="btn btn-primary" 
+                            type="submit" 
+                            [disabled]="!this.form.valid"> Sign In</button>
+                </div>
+            </form>
+        </div>
+        <div class="previous">
+            <button class="btn btn-primary" (click)="back()">
+                < previous
+            </button>
+        </div>
     </div>
-    <div class="previous">
-        <button class="btn btn-primary" (click)="back()">
-            < previous
-        </button>
-    </div>
+   
 </div>

@@ -8,12 +8,10 @@ import { LoadThreadRoutingModule } from './load-thread-routing.module';
 
 @NgModule({
   declarations: [
-    LoadThreadComponent
   ],
   imports: [
     CommonModule,
-    LoadThreadRoutingModule,
-    CommonModule
+    LoadThreadRoutingModule
   ]
 })
 

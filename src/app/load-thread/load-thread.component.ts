@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-load-thread',
@@ -7,15 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadThreadComponent implements OnInit {
 
+  @Output() newItemEvent  = new EventEmitter<string>();
+
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  myfunction(event : any) {
-    console.log(event);
+  addNewEvent(value : any){
+    this.newItemEvent.emit(value);
   }
-
-
 }
