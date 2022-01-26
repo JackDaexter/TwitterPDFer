@@ -49,17 +49,17 @@ export class SignInComponent implements OnInit {
       console.log("Prostitué !");
       
       const elem$ = this.signInService.addUser({"elem" : "value"});
-      elem$.subscribe(
-        (elem) => {
-          console.log("The value is :" + elem);
-        },
-        (err) =>{
-          console.error(err);
-        },
-        () => {
-          console.log("observable complete");
-        }
-      )
+      // elem$.subscribe(
+      //   (elem) => {
+      //     console.log("The value is :" + elem);
+      //   },
+      //   (err) =>{
+      //     console.error(err);
+      //   },
+      //   () => {
+      //     console.log("observable complete");
+      //   }
+      // )
       this.diffPassword = false;
     }
     else{
