@@ -20,6 +20,6 @@ export class SignInService {
   }
 
   addUser(user: any) {
-    return this.http.post(this.rootURL + '/user', {user});
+    return this.http.post(this.rootURL + '/user', user);
   }
 }

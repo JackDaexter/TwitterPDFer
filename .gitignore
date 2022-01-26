@@ -8,20 +8,22 @@
 /bazel-out
 
 # dependencies
-/node_modules
-/.angular
+backend/node_modules/
+frontend/node_modules/
+
+frontend/.angular
 
 # profiling files
 chrome-profiler-events*.json
 
 # IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+frontend/.idea
+frontend/.project
+frontend/.classpath
+frontend/.c9/
+frontend/*.launch
+frontend/.settings/
+frontend/*.sublime-workspace
 
 # IDE - VSCode
 .vscode/*
