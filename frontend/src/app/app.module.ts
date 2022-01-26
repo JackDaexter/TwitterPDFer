@@ -10,6 +10,7 @@ import { LoadThreadModule } from './load-thread/load-thread.module';
 import { LoginRoutingModule } from './login/login-routing.module';
 import { LoginModule } from './login/login.module';
 import { CommonModule } from '@angular/common';
+import { ApiManagerService } from './services/api-manager.service';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,13 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
+    LoadThreadModule,
     SignInModule
   ],
-  providers: [NavigationService],
+  providers: [
+    NavigationService,
+    ApiManagerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

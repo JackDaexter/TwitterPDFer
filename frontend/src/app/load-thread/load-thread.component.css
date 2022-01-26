@@ -1,0 +1,17 @@
+.main-body{
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.ctn{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row:2;
+}
+
+.r1{
+    grid-column: 1;
+}

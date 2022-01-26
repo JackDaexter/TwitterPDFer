@@ -1,7 +1,5 @@
-const { log } = require("console");
 const express = require("express");
-var bodyParser = require('body-parser');
-const text = require("./bin.js");
+const load = require("./webscrapping/load.js");
 const app = express();
 const port = 3080;
 const hostname = '127.0.0.1';
@@ -14,6 +12,10 @@ app.get('/',(req,res) => {
     res.send('Hello World !')
 });
 
+app.post('/link',(req,res) => {
+    console.log(req.body);
+    res.send({"valid?" : "yes"});
+})
 
 app.post('/user',(req,res) => {
     console.log(req.body);

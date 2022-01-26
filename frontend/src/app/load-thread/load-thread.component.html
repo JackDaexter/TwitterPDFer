@@ -1,4 +1,14 @@
-<div class="your-thread">
-    <input class="form-control" type="text" placeholder="Paste your link" #element>
-    <button class="btn btn-success" (click)="addNewEvent(element.value)">OK</button>
+<div class="main-body">
+    <div class="container ctn">
+        <div class="row r1 justify-content-center">
+            <div class="col col-md-6">
+                <div class="input-group mb-3">
+                    <input class="form-control" type="text" placeholder="Paste your link" #link>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" (click)="sendLink(link.value)" type="button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

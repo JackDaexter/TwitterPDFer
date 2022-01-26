@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ApiManagerService } from '../services/api-manager.service';
 
 @Component({
   selector: 'app-load-thread',
@@ -7,15 +8,24 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class LoadThreadComponent implements OnInit {
 
-  @Output() newItemEvent  = new EventEmitter<string>();
-
-
-  constructor() { }
+  constructor(private apimanager : ApiManagerService) { }
 
   ngOnInit(): void {
   }
+    
+  sendLink(link : string){
+    const elem$ = this.apimanager.sendLink({"link" : link});
+    
+    elem$.subscribe(
+      (elem) => {
+        console.log(elem);
+      },
+      (err) => {
 
-  addNewEvent(value : any){
-    this.newItemEvent.emit(value);
+      },
+      () => {
+        console.log("loading completed !");
+      }
+    )
   }
 }
