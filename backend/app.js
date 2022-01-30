@@ -14,6 +14,7 @@ app.get('/',(req,res) => {
 
 app.post('/link',(req,res) => {
     console.log(req.body);
+    load.launch(req.body.link);
     res.send({"valid?" : "yes"});
 })
 

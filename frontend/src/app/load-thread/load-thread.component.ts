@@ -14,6 +14,7 @@ export class LoadThreadComponent implements OnInit {
   }
     
   sendLink(link : string){
+    
     const elem$ = this.apimanager.sendLink({"link" : link});
     
     elem$.subscribe(
