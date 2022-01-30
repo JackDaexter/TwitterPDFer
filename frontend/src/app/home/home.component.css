@@ -3,16 +3,22 @@
     width: 100vw;
     max-width:100%;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr ;
 }
 
 .menu-btn > div{
     margin-bottom: 5px;
 }
 
+.menu-btn {
+    grid-column: 2;
+    padding: 0 10% 0 10%;
+}
+
 .c1{
     grid-row: 2;
 }
+
 /* .button-menu{
     grid-column: 3;
     grid-row: 2;
