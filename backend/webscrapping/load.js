@@ -1,48 +1,37 @@
 const selenium = require("selenium-webdriver");
 const puppeteer = require('puppeteer');
+const Scraper = require('./Scrape/scraper')
 
 async function launch(link) {
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({headless : true});
     const page = await browser.newPage();
-
-    try{
-        await page.goto(link);
-        let selector = `
+    
+    let selector = `
             #react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-13qz1uu.r-417010 > 
             main > div > div > div > div > div > section > 
             div > div 
         `
-        setTimeout
-        await pullElement(page,selector);
-    
+    var scraper = new Scraper(link,selector,page);
+    var startTime = performance.now()
+
+    try{
+        await page.goto(link);
+        const tweets = await scraper.pullElements()
+        console.log(tweets.length);
     }finally{
         await browser.close();
+        console.log("C'est close");
     }
-}
-function timeout(ms) {
-    return new Promise(r => setTimeout(r,ms));
+
+    var endTime = performance.now()
+
+    console.log(`Call to doSomething took ${endTime - startTime} milliseconds`)
+
 }
 
-async function pullElement(page,selector) {
-    await page.waitForSelector(selector);
-    await timeout(10000);
-    const elements = await page.evaluate((selector) => {
-        //const elem = Array.from(document.querySelector("body > app-root > div.home > app-home > div > div > div").children);
 
-        const elem = Array.from(document.querySelector(selector).children);
-        
-        return elem.map(x => x.innerText)
-    },selector)
-    
-    for(const x of elements){
-        console.log(x);
-        console.log(" ------------------------------------------------------------------- ")
-    }
-    
-    
-    console.log("END");
-}
+
 
 module.exports = {launch}
  // http://localhost:4200/home
