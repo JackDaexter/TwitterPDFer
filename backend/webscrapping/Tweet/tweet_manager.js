@@ -1,6 +1,6 @@
-const {Tweet} = require("../Tweet/tweet");
+const {Tweet} = require("./tweet");
 
-class Main {
+class TweetManager {
     constructor(){
 
     }
@@ -8,12 +8,11 @@ class Main {
     async getAllThread(scraper){
         
         var tweets = [];
-        while(verification(tweets)){
+        while(this.verification(tweets)){
             
             tweets.concat(await scraper.pullElements());
-            metamorphTweet(this.metamorphTweet);
+            this.metamorphTweet(this.metamorphTweet);
             
-            console.log(tweets)
         }
         return tweets;
     }
@@ -23,7 +22,6 @@ class Main {
         var author = ""
 
         if(tweetArray.length > 0 ){
-
             if(first_author.localeCompare("") === 1) {
                 first_author = tweetArray[1].author()
             }
@@ -34,13 +32,12 @@ class Main {
                 }
             }
             return true;
-            
         }
+
         return false;
     }
 
     metamorphTweet(rawTweetArray){
-       
         rawTweetArray.forEach((e, i) => {
             if(e != null){
                 tweetArray[i] = Tweet.treatTweet(e);
@@ -60,4 +57,4 @@ class Main {
 }
 
 
-module.exports = Main
+module.exports = TweetManager

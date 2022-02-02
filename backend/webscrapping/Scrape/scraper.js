@@ -18,7 +18,9 @@ class Scraper{
     
     async pullElements() { 
         
-        await this.page.waitForSelector(this.selector);
+        await this.page.waitForSelector(this.selector, {
+            visible:true
+        });
         await this.timeout(500);
 
         if(this.scrollDownMax != 0){
