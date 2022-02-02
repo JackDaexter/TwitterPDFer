@@ -6,24 +6,35 @@ class Scraper{
         this.link = link;
         this.selector = selector;
         this.page = page;
+        this.scrollDownMin = 0;
+        this.scrollDownMax = 0;
     }
 
 
     timeout(ms) {
-        return new Promise(r => setTimeout(r,ms));
+        return new Promise(_ => setTimeout(_,ms));
     }
 
     
     async pullElements() { 
         
         await this.page.waitForSelector(this.selector);
-        let x = await this.scrollDown(this.page,0,250)  
-        console.log(x);
+        await this.timeout(500);
+
+        if(this.scrollDownMax != 0){
+            await this.scrollDown(this.page,this.scrollDownMin,this.scrollDownMax);  
+        }
+   
         const elements = await this.page.evaluate((selector) => {
             const elem = Array.from(document.querySelector(selector).children);
             const tweets = [];
-
             elem.map(x => tweets.push(x.innerText));
+            
+            var intermediary = this.scrollDownMax;
+            this.scrollDownMax *= 2;
+            if( intermediary != window.innerHeight ){
+                this.scrollDownMin = intermediary;
+            }
             
             return tweets;
         },this.selector)
@@ -31,22 +42,16 @@ class Scraper{
         return elements;
     }
 
-
-    async scrollDown(page,begin=0,end=150){
-
-        
-        let w = await page.evaluate((b,e) => {
-            
+    async scrollDown(page,begin,end){
+        await page.evaluate((b,e) => {
             window.scrollTo(b, e);
-            return {b,e};
         },begin,end)
 
-
         await this.timeout(500);
-
-        return w;
     }
-   
+
+  
+    
 
 } 
 

@@ -4,7 +4,7 @@ const Scraper = require('./Scrape/scraper')
 
 async function launch(link) {
 
-    const browser = await puppeteer.launch({headless : true});
+    const browser = await puppeteer.launch({headless : false});
     const page = await browser.newPage();
     
     let selector = `
@@ -17,7 +17,7 @@ async function launch(link) {
 
     try{
         await page.goto(link);
-        const tweets = await scraper.pullElements()
+        allTweet = getAllThread(scraper);
         console.log(tweets.length);
     }finally{
         await browser.close();
@@ -30,7 +30,25 @@ async function launch(link) {
 
 }
 
+async function getNumberOfTweet(nbOfTweet){
+        var nbOfTweetRetrieve = 0;
+        
+        while(nbOfTweetRetrieve != nbOfTweet){
+            nbOfTweetRetrieve = await scraper.pullElements()
+        }
+}
 
+async function getAllThread(scraper){
+    var tweets = [];
+    while(verification(tweets)){
+        tweets.concat(await scraper.pullElements());
+    }
+    return tweets;
+}
+
+async function verification(elem){
+    return elem
+}   
 
 
 module.exports = {launch}
