@@ -1,4 +1,4 @@
-export class Tweet {
+class Tweet {
     constructor(){  
         this.name = ""
         this.author = ""
@@ -57,3 +57,5 @@ export class Tweet {
     }
 
 }
+
+module.exports = Tweet
