@@ -17,6 +17,7 @@ frontend/.angular
 chrome-profiler-events*.json
 
 # IDEs and editors
+#FRONT END
 frontend/.idea
 frontend/.project
 frontend/.classpath
@@ -25,6 +26,8 @@ frontend/*.launch
 frontend/.settings/
 frontend/*.sublime-workspace
 
+#BACK END
+backend/*.pdf
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
