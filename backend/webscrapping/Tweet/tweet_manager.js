@@ -1,9 +1,8 @@
 const {Tweet} = require("./tweet");
 
 class TweetManager {
-    constructor(){
-
-    }
+    
+    constructor(){}
 
     async getAllThread(scraper){
         
@@ -51,6 +50,19 @@ class TweetManager {
         
         while(nbOfTweetRetrieve != nbOfTweet){
             nbOfTweetRetrieve = await scraper.pullElements()
+        }
+    }
+
+    async removeElement(page, selectors){
+       
+        for(let s of selectors){
+            console.log("BEFORE");
+            console.log(s);
+            await page.waitForSelector(s)
+            console.log("AFTER");
+            await page.evaluate(async(e) => {
+                document.querySelector(e).remove();
+            },s)
         }
     }
 
