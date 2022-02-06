@@ -27,19 +27,23 @@ class Scraper{
             await this.scrollDown(this._page,this._scrollDownMin,this._scrollDownMax);  
         }
         
-        console.log("Avant _scrollDownMax : " + this._scrollDownMax + " | " + this._scrollDownMin);
+        //console.log("Avant _scrollDownMax : " + this._scrollDownMax + " | " + this._scrollDownMin);
         var elements =  await this._page.evaluate((_selector) => {
 
             const tweets = Array.from(document.querySelector(_selector).children).map(x => x.innerText);
-            
-            
-            return tweets;
-            
+
+            return tweets;            
         },this._selector)
-        console.log("Après _scrollDownMax : " + this._scrollDownMax + " | " + this._scrollDownMin);
+
+        //console.log("Après _scrollDownMax : " + this._scrollDownMax + " | " + this._scrollDownMin);
+        
+        if(this.scrollDownMax === 0 ){
+            elements.splice(1,1)
+        }
 
         this.scrollManagement();        
 
+        console.log("Length : " + elements.length);
         return elements;
     }
 
@@ -55,7 +59,7 @@ class Scraper{
         var intermediary = this._scrollDownMax;
 
         if(this._scrollDownMax === 0){
-            this._scrollDownMax = 3600;
+            this._scrollDownMax = 6000;
         }
         else{
             this._scrollDownMax += 1200;

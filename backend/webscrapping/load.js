@@ -2,7 +2,8 @@ const selenium = require("selenium-webdriver");
 const puppeteer = require('puppeteer');
 const Scraper = require('./Scrape/scraper')
 const TweetManager = require ('./Tweet/tweet_manager')
-const fs = require('fs')
+const fs = require('fs');
+const { time } = require("console");
 
 
 async function launch(link) {
@@ -26,10 +27,11 @@ async function launch(link) {
     try{
         await page.goto(link,{waitUntil : 'networkidle0'});
         await tweetManager.removeElement(page, [selector_cookie,selector_subscribe])
-
+ 
         array = await tweetManager.getAllThread(scraper);
         await typeOfPrinting(page,array,2)
         
+        await scraper.timeout(78000)
     }finally{
         await browser.close();
         console.log("END LIL NEEGAA");
@@ -42,6 +44,7 @@ async function typeOfPrinting(page,array,type){
     // await page.evaluate((b,e) => {
     //     window.scrollTo(b, e);
     // },0,2500)
+    const elements = array.map(x => x.tweet)
     if(type === 1){
         await page.pdf({ 
             path: 'thread.pdf'

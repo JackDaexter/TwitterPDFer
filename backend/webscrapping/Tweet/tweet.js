@@ -9,8 +9,8 @@ class Tweet {
 
         var tweet = new Tweet()
         var tweetSplit = rawTweet.toString().split("\n");
+        console.log("LENGTH LES MECS : "+  tweetSplit.length);
         if(tweetSplit.length > 1){
-
             if(tweetSplit[1].includes("@")){
                 tweet.name = tweetSplit[0];
                 tweet.author = tweetSplit[1];

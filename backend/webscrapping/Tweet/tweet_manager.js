@@ -1,5 +1,5 @@
 const Tweet = require("./tweet");
-
+const Scraper = require("../Scrape/scraper")
 class TweetManager {
     
     constructor(){}
@@ -9,27 +9,31 @@ class TweetManager {
         var tweets = []
         tweets = tweets.concat(await scraper.pullElements());
 
-        this.metamorphTweet(tweets);
+        tweets = this.metamorphTweet(tweets);
 
         while(!this.verification(tweets)){
-            
             tweets = tweets.concat(this.metamorphTweet(await scraper.pullElements()));
         }
         
-        //console.log(tweets);
-        return newFormtweet;
+        return tweets;
     }
     
     verification(tweetArray){
-
         var author = ""
+
+        console.log(tweetArray[0].author);
 
         if(tweetArray.length > 0 ){
             if(author.localeCompare("") === 1) {
+                //console.log(tweetArray[1]);
                 author = tweetArray[1].author()
             }
+            else if(tweetArray.includes(null)){
+                //clearNull(tweetArray)
+                return true;
+            }
             else{
-                if(author != tweetArray[tweetArray.length - 1]){
+                if(author != tweetArray[tweetArray.length - 1].author){
                     return false;
                 }
             }
@@ -45,10 +49,11 @@ class TweetManager {
                 rawTweetArray[i] = Tweet.treatTweet(e);
             }
         })
-        console.log(" ---------------------- ");
-        console.log(rawTweetArray.length);
-        rawTweetArray = rawTweetArray.filter(n => n)
-        console.log(rawTweetArray.length);
+
+        return rawTweetArray;
+    }
+
+    clearNull(array){
 
     }
 
