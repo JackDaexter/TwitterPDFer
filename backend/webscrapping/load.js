@@ -31,7 +31,6 @@ async function launch(link) {
         array = await tweetManager.getAllThread(scraper);
         await typeOfPrinting(page,array,2)
         
-        await scraper.timeout(78000)
     }finally{
         await browser.close();
         console.log("END LIL NEEGAA");
@@ -41,10 +40,13 @@ async function launch(link) {
 
 
 async function typeOfPrinting(page,array,type){
-    // await page.evaluate((b,e) => {
-    //     window.scrollTo(b, e);
-    // },0,2500)
-    const elements = array.map(x => x.tweet)
+    var index = array.indexOf(null)
+    
+    //var allTweet = array.slice(0,index+1)
+
+    console.log(array);
+    array = array.map(x => x.tweet)
+
     if(type === 1){
         await page.pdf({ 
             path: 'thread.pdf'

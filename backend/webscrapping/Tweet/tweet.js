@@ -9,13 +9,13 @@ class Tweet {
 
         var tweet = new Tweet()
         var tweetSplit = rawTweet.toString().split("\n");
-        console.log("LENGTH LES MECS : "+  tweetSplit.length);
+
         if(tweetSplit.length > 1){
             if(tweetSplit[1].includes("@")){
                 tweet.name = tweetSplit[0];
                 tweet.author = tweetSplit[1];
                 tweetSplit.slice(0,2);
-                tweet.tweet = tweetSplit.join("\n");
+                tweet.tweet = tweetSplit.slice(2,tweetSplit.length).join("\n");
 
                 return tweet;
             }
