@@ -27,7 +27,8 @@ frontend/.settings/
 frontend/*.sublime-workspace
 
 #BACK END
-backend/*.pdf
+/backend/*.pdf
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json

@@ -1,14 +1,17 @@
 class Tweet {
     constructor(){  
-        this.name = ""
-        this.author = ""
-        this.tweet = ""
+        this._name = ""
+        this._author = ""
+        this._tweet = ""
     }
 
-    static treatTweet(tweet){
+    static treatTweet(rawTweet){
+        console.log(typeof rawTweet);
+
         var tweet = new Tweet()
-        tweetSplit = tweet.split("\n");
+        var tweetSplit = rawTweet.toString().split("\n");
         if(tweetSplit.length > 1){
+
             if(tweetSplit[1].includes("@")){
                 tweet.name = tweetSplit[0];
                 tweet.author = tweetSplit[1];
@@ -17,13 +20,20 @@ class Tweet {
 
                 return tweet;
             }
+            else{
+                console.log("ERROR AFTER : " + tweetSplit);
+                return null;
+            }
+
         }
         else{
+            console.log("ERROR B4 : " + tweetSplit);
+
             return null;
         }
     }
 
-    static treatTweet(rawTweets){
+    static treatTweets(rawTweets){
         var tweets = []
         for(let elem of rawTweets){
             tweets.push(this.treatTweet(elem))
@@ -33,27 +43,27 @@ class Tweet {
     }
 
     get name(){
-        return this.name;
+        return this._name;
     }
 
     get author(){
-        return this.author;
+        return this._author;
     }
 
     get tweet(){
-        return this.tweet;
+        return this._tweet;
     }
 
     set name(value){
-        this.name = value;
+        this._name = value;
     }
 
     set author(author){
-        this.author = author;
+        this._author = author;
     }
 
     set tweet(tweet){
-        return this.tweet = tweet;
+        this._tweet = tweet;
     }
 
 }

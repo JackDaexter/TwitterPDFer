@@ -1,19 +1,23 @@
-const {Tweet} = require("./tweet");
+const Tweet = require("./tweet");
 
 class TweetManager {
     
     constructor(){}
 
     async getAllThread(scraper){
-        
-        var tweets = [];
-        while(this.verification(tweets)){
+                
+        var tweets = []
+        tweets = tweets.concat(await scraper.pullElements());
+
+        this.metamorphTweet(tweets);
+
+        while(!this.verification(tweets)){
             
-            tweets.concat(await scraper.pullElements());
-            this.metamorphTweet(this.metamorphTweet);
-            
+            tweets = tweets.concat(this.metamorphTweet(await scraper.pullElements()));
         }
-        return tweets;
+        
+        //console.log(tweets);
+        return newFormtweet;
     }
     
     verification(tweetArray){
@@ -21,27 +25,31 @@ class TweetManager {
         var author = ""
 
         if(tweetArray.length > 0 ){
-            if(first_author.localeCompare("") === 1) {
-                first_author = tweetArray[1].author()
+            if(author.localeCompare("") === 1) {
+                author = tweetArray[1].author()
             }
             else{
-                var author = tweetArray[tweetArray.length - 1] ;
-                if(author != first_author){
+                if(author != tweetArray[tweetArray.length - 1]){
                     return false;
                 }
             }
             return true;
         }
-
-        return false;
+        return true;
     }
 
     metamorphTweet(rawTweetArray){
+
         rawTweetArray.forEach((e, i) => {
             if(e != null){
-                tweetArray[i] = Tweet.treatTweet(e);
+                rawTweetArray[i] = Tweet.treatTweet(e);
             }
         })
+        console.log(" ---------------------- ");
+        console.log(rawTweetArray.length);
+        rawTweetArray = rawTweetArray.filter(n => n)
+        console.log(rawTweetArray.length);
+
     }
 
     
@@ -56,13 +64,13 @@ class TweetManager {
     async removeElement(page, selectors){
        
         for(let s of selectors){
-            console.log("BEFORE");
-            console.log(s);
-            await page.waitForSelector(s)
-            console.log("AFTER");
-            await page.evaluate(async(e) => {
-                document.querySelector(e).remove();
-            },s)
+            try{
+                await page.waitForSelector(s, {visible:true, timeout : 4000})
+                await page.evaluate(async(e) => {
+                    document.querySelector(e).remove();
+                },s)
+            }catch(e){
+            }
         }
     }
 

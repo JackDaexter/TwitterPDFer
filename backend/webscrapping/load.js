@@ -2,11 +2,12 @@ const selenium = require("selenium-webdriver");
 const puppeteer = require('puppeteer');
 const Scraper = require('./Scrape/scraper')
 const TweetManager = require ('./Tweet/tweet_manager')
+const fs = require('fs')
 
 
 async function launch(link) {
 
-    const browser = await puppeteer.launch({headless : false,defaultViewport: null});
+    const browser = await puppeteer.launch({headless : true});
     const page = await browser.newPage();
     var tweetManager = new TweetManager()
     
@@ -21,24 +22,40 @@ async function launch(link) {
 
     let selector_subscribe = `#layers > div > div:nth-child(1) > div > div > div`
 
-    await tweetManager.removeElement(page, [selector_cookie,selector_subscribe])
 
     try{
-        await page.goto(link);
-        array = tweetManager.getAllThread(scraper);
-        await typeOfPrinting(page,1)
+        await page.goto(link,{waitUntil : 'networkidle0'});
+        await tweetManager.removeElement(page, [selector_cookie,selector_subscribe])
 
+        array = await tweetManager.getAllThread(scraper);
+        await typeOfPrinting(page,array,2)
+        
     }finally{
         await browser.close();
+        console.log("END LIL NEEGAA");
     }
 
 }
 
 
-async function typeOfPrinting(page,type){
+async function typeOfPrinting(page,array,type){
+    // await page.evaluate((b,e) => {
+    //     window.scrollTo(b, e);
+    // },0,2500)
     if(type === 1){
-        await page.pdf({ path: 'thread.pdf', format:'A5', printBackgroung:false})
+        await page.pdf({ 
+            path: 'thread.pdf'
+        }) 
+    }else{
+        fs.writeFile("./test.txt",array.join("\n\n"), err => {
+            if(err){
+                console.log(err);
+                return
+            }
+        }) 
     }
+
+    
 }
 
 
