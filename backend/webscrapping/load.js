@@ -7,7 +7,7 @@ const fs = require('fs')
 
 async function launch(link) {
 
-    const browser = await puppeteer.launch({headless : true});
+    const browser = await puppeteer.launch({headless : false, defaultViewport:{width:800, height:1200}});
     const page = await browser.newPage();
     var tweetManager = new TweetManager()
     

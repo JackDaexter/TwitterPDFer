@@ -1,13 +1,13 @@
-const { scrollPageToBottom } = require('puppeteer-autoscroll-down')
+const { scroll_pageToBottom } = require('puppeteer-autoscroll-down')
 
 class Scraper{
     
-    constructor(link, selector,page){
-        this.link = link;
-        this.selector = selector;
-        this.page = page;
-        this.scrollDownMin = 0;
-        this.scrollDownMax = 0;
+    constructor(link, selector,page,scrollDownMax=0, scrollDownMin=0){
+        this._link = link;
+        this._selector = selector;
+        this._page = page;
+        this._scrollDownMin = 0;
+        this._scrollDownMax = 0;
     }
 
 
@@ -18,48 +18,84 @@ class Scraper{
     
     async pullElements() { 
 
-        await this.page.waitForSelector(this.selector, {
+        await this._page.waitForSelector(this._selector, {
             visible:true
         });
         await this.timeout(800);
 
-        if(this.scrollDownMax != 0){
-            await this.scrollDown(this.page,this.scrollDownMin,this.scrollDownMax);  
+        if(this._scrollDownMax != 0){
+            await this.scrollDown(this._page,this._scrollDownMin,this._scrollDownMax);  
         }
-    
-        var elements =  await this.page.evaluate((selector) => {
+        
+        console.log("Avant _scrollDownMax : " + this._scrollDownMax + " | " + this._scrollDownMin);
+        var elements =  await this._page.evaluate((_selector) => {
 
-            const tweets = Array.from(document.querySelector(selector).children).map(x => x.innerText);
+            const tweets = Array.from(document.querySelector(_selector).children).map(x => x.innerText);
             
-            var intermediary = this.scrollDownMax;
-
-            if(this.scrollDownMax == 0){
-                this.scrollDownMax = window.innerHeight;
-            }
-            else{
-                this.scrollDownMax *= 2;
-            }
-            if( intermediary != window.innerHeight ){
-                this.scrollDownMin = intermediary;
-            }
             
             return tweets;
             
-        },this.selector)
-        
+        },this._selector)
+        console.log("Après _scrollDownMax : " + this._scrollDownMax + " | " + this._scrollDownMin);
+
+        this.scrollManagement();        
+
         return elements;
     }
 
-    async scrollDown(page,begin,end){
-        await page.evaluate((b,e) => {
+    async scrollDown(_page,begin,end){
+        await _page.evaluate((b,e) => {
             window.scrollTo(b, e);
         },begin,end)
 
         await this.timeout(500);
     }
 
-  
+    scrollManagement(){
+        var intermediary = this._scrollDownMax;
+
+        if(this._scrollDownMax === 0){
+            this._scrollDownMax = 3600;
+        }
+        else{
+            this._scrollDownMax += 1200;
+        }
+        if( intermediary !== 1200 ){
+            this._scrollDownMin =  this._scrollDownMax - 1200;
+        }
+    }
+
+    get scrollDownMax(){
+        return this._scrollDownMax;
+    }
+
+    get scrollDownMin(){
+        return this._scrollDownMin
+    }
+
+    get link(){
+        return this._link;
+    }
+
+    get selector(){
+        return this._selector;
+    }
     
+    set scrollDownMax(value){
+        this._scrollDownMax = value;
+    }
+
+    set scrollDownMin(value){
+        this._scrollDownMin = value;
+    }
+
+    set link(value){
+        this._link = value;
+    }
+    
+    set selector(value){
+        this._selector = value;
+    }
 
 } 
 

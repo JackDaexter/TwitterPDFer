@@ -6,7 +6,6 @@ class Tweet {
     }
 
     static treatTweet(rawTweet){
-        console.log(typeof rawTweet);
 
         var tweet = new Tweet()
         var tweetSplit = rawTweet.toString().split("\n");
