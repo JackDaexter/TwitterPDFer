@@ -29,10 +29,12 @@ class TweetManager {
                 author = tweetArray[1].author()
             }
             else if(tweetArray.includes(null)){
+                console.log("AUTRE PROBLEME");
                 //clearNull(tweetArray)
                 return true;
             }
             else{
+                console.log(" ON a author === author ? : " +  author != tweetArray[tweetArray.length - 1].author);
                 if(author != tweetArray[tweetArray.length - 1].author){
                     return false;
                 }
@@ -52,11 +54,6 @@ class TweetManager {
 
         return rawTweetArray;
     }
-
-    clearNull(array){
-
-    }
-
     
     async getNumberOfTweet(nbOfTweet){
         var nbOfTweetRetrieve = 0;

@@ -24,18 +24,15 @@ class Scraper{
         await this.timeout(800);
 
         if(this._scrollDownMax != 0){
-            await this.scrollDown(this._page,this._scrollDownMin,this._scrollDownMax);  
+            await this.scrollDown();  
         }
         
-        //console.log("Avant _scrollDownMax : " + this._scrollDownMax + " | " + this._scrollDownMin);
         var elements =  await this._page.evaluate((_selector) => {
 
             const tweets = Array.from(document.querySelector(_selector).children).map(x => x.innerText);
 
             return tweets;            
         },this._selector)
-
-        //console.log("Après _scrollDownMax : " + this._scrollDownMax + " | " + this._scrollDownMin);
         
         if(this.scrollDownMax === 0 ){
             elements.splice(1,1)
@@ -47,12 +44,12 @@ class Scraper{
         return elements;
     }
 
-    async scrollDown(_page,begin,end){
-        await _page.evaluate((b,e) => {
+    async scrollDown(){
+        await this._page.evaluate((b,e) => {
             window.scrollTo(b, e);
-        },begin,end)
+        },this._scrollDownMin,this._scrollDownMax)
 
-        await this.timeout(500);
+        await this.timeout(200);
     }
 
     scrollManagement(){

@@ -8,7 +8,7 @@ const { time } = require("console");
 
 async function launch(link) {
 
-    const browser = await puppeteer.launch({headless : false, defaultViewport:{width:800, height:1200}});
+    const browser = await puppeteer.launch({headless : true, defaultViewport:{width:1200, height:1200}});
     const page = await browser.newPage();
     var tweetManager = new TweetManager()
     
@@ -29,37 +29,30 @@ async function launch(link) {
         await tweetManager.removeElement(page, [selector_cookie,selector_subscribe])
  
         array = await tweetManager.getAllThread(scraper);
-        await typeOfPrinting(page,array,2)
+        await typeOfPrinting(page,2)
         
     }finally{
         await browser.close();
         console.log("END LIL NEEGAA");
     }
 
+    var index = array.indexOf(null)
+    
+    array = array.slice(0,index)
+
+    console.log(array);
+
 }
 
 
-async function typeOfPrinting(page,array,type){
-    var index = array.indexOf(null)
+async function typeOfPrinting(page,type){
     
-    //var allTweet = array.slice(0,index+1)
-
-    console.log(array);
-    array = array.map(x => x.tweet)
 
     if(type === 1){
         await page.pdf({ 
             path: 'thread.pdf'
         }) 
-    }else{
-        fs.writeFile("./test.txt",array.join("\n\n"), err => {
-            if(err){
-                console.log(err);
-                return
-            }
-        }) 
     }
-
     
 }
 

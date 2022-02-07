@@ -27,7 +27,6 @@ class Tweet {
         }
         else{
             console.log("ERROR B4 : " + tweetSplit);
-
             return null;
         }
     }
