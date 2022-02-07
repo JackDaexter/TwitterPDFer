@@ -8,6 +8,21 @@
                         <button class="btn btn-warning" (click)="sendLink(link.value)" type="button">Send</button>
                     </div>
                 </div>
+                <div class="input-group mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="typePdf" checked #PdfChoice>
+                        <label class="form-check-label" for="typePdf">
+                            PDF
+                        </label>
+                    </div>
+    
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="typePdf" #RawChoice>
+                        <label class="form-check-label" for="typePdf">
+                            Raw
+                        </label>
+                    </div>
+                </div>  
             </div>
         </div>
     </div>

@@ -40,14 +40,13 @@ async function launch(link) {
     
     array = array.slice(0,index)
 
-    console.log(array);
+    return array
 
 }
 
 
 async function typeOfPrinting(page,type){
     
-
     if(type === 1){
         await page.pdf({ 
             path: 'thread.pdf'
