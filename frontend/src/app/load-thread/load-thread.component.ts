@@ -8,33 +8,38 @@ import { ApiManagerService } from '../services/api-manager.service';
 })
 export class LoadThreadComponent implements OnInit {
 
-  init : Boolean = false;
-
+  theLink : string = "";
   @ViewChild('link') linked : ElementRef;
-  @ViewChild('PdfChoice') pdfchoice : ElementRef;
-  @ViewChild('RawChoice') rawchoice : ElementRef;
 
   constructor(private apimanager : ApiManagerService) { }
 
   ngOnInit(): void {
   }
-    
-  sendLink(link : string){    
 
-    const elem$ = this.apimanager.sendLink({"link" : link});
-    if(this.pdfchoice.nativeElement.checked || this.rawchoice.nativeElement.checked){
-      this.init = true;
+  // ^"https:\/\/twitter.com"$[a-zA-Z0-9]*
 
-      elem$.subscribe(
-          (elem) => {
-            console.log(elem);
-          },
-          (err) => {
+  removeSupperflu(){
+
+    var allTheLink = this.theLink.trim().replace(/\s/g, '');
+    var reg = new RegExp('^https:\/\/twitter\.com\/[a-zA-Z0-9\/]*');
+        
+    return reg.test(allTheLink);
+  }
+
+  generate(link : string, type : number){
+
+    const elem$ = this.apimanager.sendLink({"link" : link, "type" : type});
+
     
-          },
-          () => {
-            console.log("loading completed !");
-      })
-    }
+    elem$.subscribe(
+      (elem) => {
+        console.log(elem);
+      },
+      (err) => {
+
+      },
+      () => {
+        console.log("loading completed !");
+  })
   }
 }

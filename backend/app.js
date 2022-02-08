@@ -14,7 +14,8 @@ app.get('/',(req,res) => {
 
 app.post('/link',(req,res) => {
     console.log(req.body);
-    var allTweet = load.launch(req.body.link);
+    console.log();
+    var allTweet = load.launch(req.body.link,req.body.type);
     res.send({"valid?" : allTweet});
 })
 

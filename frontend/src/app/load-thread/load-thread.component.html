@@ -1,29 +1,44 @@
 <div class="main-body">
     <div class="container ctn">
+        <!-- form-control -->
         <div class="row r1 justify-content-center">
-            <div class="col col-md-6">
-                <div class="input-group mb-3">
-                    <input class="form-control" type="text" placeholder="Paste your link" #link>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-warning" (click)="sendLink(link.value)" type="button">Send</button>
-                    </div>
+            <div class="col col-md-12">
+                <div class="sm-3">
+                    <input  [(ngModel)]="theLink"
+                            class="form-control"
+                            [ngClass]="{
+                                'is-invalid':removeSupperflu() === false,
+                                'is-valid':removeSupperflu() === true
+                            }" 
+                            type="text" 
+                            placeholder="Paste your link"  
+                            #link>
+                    <!-- <div class="valid-feedback">
+                        Looks good!
+                    </div> -->
                 </div>
-                <div class="input-group mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="typePdf" checked #PdfChoice>
-                        <label class="form-check-label" for="typePdf">
-                            PDF
-                        </label>
-                    </div>
-    
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="typePdf" #RawChoice>
-                        <label class="form-check-label" for="typePdf">
-                            Raw
-                        </label>
-                    </div>
-                </div>  
             </div>
+        </div>
+        
+        <div class="row r2 justify-content-center">
+            <div class="col-sm-3">
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-warning" 
+                            (click)="generate(link.value,1)"
+                            [disabled]="!removeSupperflu()"
+                            type="button">Generate PDF</button>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <ng-container>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-warning" 
+                                (click)="generate(link.value,2)"
+                                [disabled]="!removeSupperflu()"
+                                type="button">Generate Raw</button>
+                    </div>
+                </ng-container>
+            </div> 
         </div>
     </div>
 </div>
