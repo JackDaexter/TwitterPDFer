@@ -40,7 +40,6 @@ class Scraper{
 
         this.scrollManagement();        
 
-        console.log("Length : " + elements.length);
         return elements;
     }
 

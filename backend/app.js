@@ -13,10 +13,9 @@ app.get('/',(req,res) => {
 });
 
 app.post('/link',(req,res) => {
-    console.log(req.body);
-    console.log();
-    var allTweet = load.launch(req.body.link,req.body.type);
-    res.send({"valid?" : allTweet});
+ 
+    var tweetForm = load.launch(req.body.link,req.body.type);
+    res.send({"valid?" : tweetForm});
 })
 
 app.post('/user',(req,res) => {

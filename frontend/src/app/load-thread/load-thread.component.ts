@@ -27,16 +27,16 @@ export class LoadThreadComponent implements OnInit {
   }
 
   generate(link : string, type : number){
-
+    const blob = new Blob();
     const elem$ = this.apimanager.sendLink({"link" : link, "type" : type});
 
     
     elem$.subscribe(
-      (elem) => {
-        console.log(elem);
+      (elem: any) => {
+        const blob = new Blob(elem);
+
       },
       (err) => {
-
       },
       () => {
         console.log("loading completed !");

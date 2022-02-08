@@ -20,13 +20,10 @@ class Tweet {
                 return tweet;
             }
             else{
-                console.log("ERROR AFTER : " + tweetSplit);
                 return null;
             }
-
         }
         else{
-            console.log("ERROR B4 : " + tweetSplit);
             return null;
         }
     }
