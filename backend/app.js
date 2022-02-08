@@ -12,10 +12,11 @@ app.get('/',(req,res) => {
     res.send('Hello World !')
 });
 
-app.post('/link',(req,res) => {
+app.post('/link',async (req,res) => {
  
-    var tweetForm = load.launch(req.body.link,req.body.type);
-    res.send({"valid?" : tweetForm});
+    var tweetForm = await load.launch(req.body.link,req.body.type);
+    res.set('Content-Type', "application/pdf");
+    res.send({"pdf" : tweetForm});
 })
 
 app.post('/user',(req,res) => {

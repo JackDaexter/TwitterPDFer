@@ -27,14 +27,15 @@ export class LoadThreadComponent implements OnInit {
   }
 
   generate(link : string, type : number){
-    const blob = new Blob();
     const elem$ = this.apimanager.sendLink({"link" : link, "type" : type});
 
     
     elem$.subscribe(
       (elem: any) => {
-        const blob = new Blob(elem);
-
+        console.log(elem.pdf);
+        
+        //const blob = new Blob(elem);
+        window.open(window.URL.createObjectURL(new Blob(elem.pdf.data, {type:"application/pdf"})))
       },
       (err) => {
       },

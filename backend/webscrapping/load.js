@@ -8,7 +8,7 @@ async function launch(link,type) {
     const browser = await puppeteer.launch({headless : true, defaultViewport:{width:1200, height:1200}});
     const page = await browser.newPage();
     var tweetManager = new TweetManager()
-    var threadForm = ""
+    var threadForm;
 
     let selector_thread = `
             #react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-13qz1uu.r-417010 > 
@@ -29,8 +29,8 @@ async function launch(link,type) {
         
     }finally{
         await browser.close();
-        console.log("END LIL NEEGAA");
     }
+
 
     return threadForm;
 
