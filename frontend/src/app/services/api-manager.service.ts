@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +10,10 @@ export class ApiManagerService {
   private rootURL = "/api";
 
   sendLink(link : any){
-    return this.http.post(this.rootURL + "/link", link);
+    return this.http
+               .post<any>(this.rootURL + "/link", link,{
+                responseType: "arraybuffer" as "json"
+               })
   }
 
 }

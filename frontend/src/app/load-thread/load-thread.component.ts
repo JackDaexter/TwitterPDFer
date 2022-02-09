@@ -29,18 +29,17 @@ export class LoadThreadComponent implements OnInit {
   generate(link : string, type : number){
     const elem$ = this.apimanager.sendLink({"link" : link, "type" : type});
 
-    
     elem$.subscribe(
-      (elem: any) => {
-        console.log(elem.pdf);
+      (elem) => {
+  
+        var pdf = window.URL.createObjectURL(new Blob([elem], { type: "application/pdf" }));
+        window.open(pdf);
         
-        //const blob = new Blob(elem);
-        window.open(window.URL.createObjectURL(new Blob(elem.pdf.data, {type:"application/pdf"})))
       },
       (err) => {
       },
       () => {
         console.log("loading completed !");
-  })
+      })
   }
 }
