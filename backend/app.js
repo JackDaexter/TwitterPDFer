@@ -18,11 +18,20 @@ app.post('/link',async (req,res) => {
     res.send(tweetForm);
 })
 
-app.post('/user',(req,res) => {
-    console.log(req.body);
-    res.write
-    res.send({"enter" : "pass"});
-});
+app.post('/link',async (req,res) => {
+    var fs = require('fs')
+    var pdf;
+    pdf = fs.readFileSync(__dirname + '/thread.pdf');
+
+    console.log(pdf.byteLength);
+    //fs.writeFileSync('thepdf.pdf',pdf)
+    //var tweetForm = await load.launch(req.body.link,req.body.type);
+    var elem = {"pdf" : pdf}
+    console.log(typeof elem);
+    console.log(elem.pdf.byteLength);
+    res.contentType('application/pdf');
+    res.send({"pdf" : pdf});
+})
 
 app.listen(port, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
