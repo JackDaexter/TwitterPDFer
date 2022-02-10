@@ -25,8 +25,13 @@ async function launch(link,type) {
         await tweetManager.removeElement(page, [selector_cookie,selector_subscribe])
  
         array = await tweetManager.getAllThread(scraper);
-        threadForm = await typeOfPrinting(page,type)
-        
+
+        if(type == 1){
+            threadForm = await generatePdf(page);
+        }
+        else{
+            threadForm = generateRaw(page,array);
+        }
     }finally{
         await browser.close();
     }
@@ -37,16 +42,14 @@ async function launch(link,type) {
 }
 
 
-async function typeOfPrinting(page,type,array=[""]){
+async function generatePdf(page){
+    return await page.pdf() 
+}
 
-    if(type === 1){
-        return await page.pdf() 
-    }else{
-        var index = array.indexOf(null)
-        array = array.slice(0,index)
-        return array;
-    }
-    
+function generatePdf(page, array){
+    var index = array.indexOf(null);
+    array = array.slice(0,index);
+    return array;
 }
 
 
