@@ -61,6 +61,10 @@ class Tweet {
         this._tweet = tweet;
     }
 
+    toString(){
+        return this._name + "\n" + this._author + this._tweet + "\n";
+    }
+
 }
 
 module.exports = Tweet

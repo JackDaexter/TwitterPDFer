@@ -1,11 +1,12 @@
 const Tweet = require("./tweet");
 const Scraper = require("../Scrape/scraper")
+
 class TweetManager {
     
     constructor(){}
 
-    async getAllThread(scraper){
-                
+    async getEntireThread(page, scraper){
+        var i  = 0;
         var tweets = []
         tweets = tweets.concat(await scraper.pullElements());
 
@@ -13,6 +14,7 @@ class TweetManager {
 
         while(!this.verification(tweets)){
             tweets = tweets.concat(this.metamorphTweet(await scraper.pullElements()));
+            i++;
         }
         
         return tweets;

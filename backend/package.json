@@ -12,10 +12,10 @@
   "description": "",
   "dependencies": {
     "express": "^4.17.2",
+    "FileSaver": "^0.10.0",
     "nodemon": "^2.0.15",
     "puppeteer": "^13.1.2",
     "puppeteer-autoscroll-down": "^1.0.0",
-    "puppeteer-core": "^13.1.2",
     "selenium-webdriver": "^4.1.1"
   }
 }
